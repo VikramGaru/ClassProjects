@@ -1,0 +1,41 @@
+package lab5;
+
+import java.awt.GridLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class WebViewer {
+	private JTextArea _a;
+	private JLabel _b;
+	private JFrame _c;
+	public WebViewer(){
+		_c= new JFrame();
+		_a=new JTextArea();
+		_b=new JLabel();
+		_c.setVisible(true);
+		GridLayout grid=new GridLayout(1,2);
+		JPanel panel=new JPanel();
+		panel.setLayout(grid);
+		JScrollPane sta=new JScrollPane(_a);
+		JScrollPane stl=new JScrollPane(_b);
+		_b.setText("A very simple web page");
+		_c.add(panel);
+		panel.add(sta);
+		panel.add(stl);
+		_c.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		_c.pack();
+		
+	}
+		public void loadPage(String url)
+		{
+			PageReader reader=new PageReader();
+		    String html=reader.readPage(url);
+			_b.setText(html);
+			_a.setText(url);
+	}
+
+}

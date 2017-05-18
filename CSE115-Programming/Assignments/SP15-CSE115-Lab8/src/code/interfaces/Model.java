@@ -1,0 +1,560 @@
+package code.interfaces;
+
+import java.awt.Point;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+
+public class Model {
+	private int _i;
+	private int _s;
+	private HashMap<Point,Integer> _m;
+	private View _a;
+	public Model(){
+		_m=new HashMap<Point,Integer>();
+		list();
+		_m.put(list(), 2);
+		_i=0;
+		_s=0;
+	}
+	public void addView(View a){
+		_a=a;
+	}
+	public void start(){
+		_i=0;
+		add();
+		play();
+		if(_i!=0){
+			list();
+			_m.put(list(),2);
+		}
+		_a.updateView();
+	}
+	public void play(){
+		int i=3;
+		while(i>=0){
+			int a=0;
+			int j=3;
+			while(j>=0){
+				if(_m.containsKey(new Point(j,i))){
+					if(a!=0){
+						int k=3;
+						while(k>=0){
+							if(!_m.containsKey(new Point(k,i))){
+								_m.put(new Point(k,i), _m.get(new Point(j,i)));
+								_m.remove(new Point(j,i));
+								k=0;
+								_i=1;
+							}
+							k=k-1;
+						}
+					}
+				}
+				else{
+					a=1;
+				}
+				j=j-1;
+			}
+			i=i-1;
+		}
+	}
+	public void add(){
+		int i=3;
+		while(i>=0){
+			int j=3;
+			while(j>=0){
+				if(_m.containsKey(new Point(j,i))){
+					int k=j-1;
+					while(k>=0){
+						if(_m.containsKey(new Point(k,i))){
+							if(_m.get(new Point(k,i))==_m.get(new Point(j,i))){
+								int a=_m.get(new Point(k,i));
+								int b=_m.get(new Point(j,i));
+								int c=a+b;
+								_m.put(new Point(j,i),c);
+								_m.remove(new Point(k,i));
+								_i=1;
+								_s=_s+c;
+							}
+							k=0;
+						}
+						k=k-1;
+					}
+				}
+				j=j-1;
+			}
+			i=i-1;
+		}
+	}
+	public void start1(){
+		_i=0;
+		add1();
+		play1();
+		if(_i!=0){
+			list();
+			_m.put(list(),2);
+		}
+		_a.updateView();
+	}
+	public void play1(){
+		int i=0;
+		while(i<=3){
+			int a=0;
+			int j=0;
+			while(j<=3){
+				if(_m.containsKey(new Point(j,i))){
+					if(a!=0){
+						int k=0;
+						while(k<=2){
+							if(!_m.containsKey(new Point(k,i))){
+								_m.put(new Point(k,i), _m.get(new Point(j,i)));
+								_m.remove(new Point(j,i));
+								k=2;
+								_i=1;
+							}
+							k=k+1;
+						}
+					}
+				}
+				else{
+					a=1;
+				}
+				j=j+1;
+			}
+			i=i+1;
+		}
+	}
+	public void add1(){
+		int i=0;
+		while(i<=3){
+			int j=0;
+			while(j<=3){
+				if(_m.containsKey(new Point(j,i))){
+					int k=j+1;
+					while(k<=3){
+						if(_m.containsKey(new Point(k,i))){
+							if(_m.get(new Point(k,i))==_m.get(new Point(j,i))){
+								int a=_m.get(new Point(k,i));
+								int b=_m.get(new Point(j,i));
+								int c=a+b;
+								_m.put(new Point(j,i),c);
+								_m.remove(new Point(k,i));
+								_i=1;
+								_s=_s+c;
+							}
+							k=3;
+						}
+						k=k+1;
+					}
+				}
+				j=j+1;
+			}
+			i=i+1;
+		}
+	}
+	public void start2(){
+		_i=0;
+		add2();
+		play2();
+		if(_i!=0){
+			list();
+			_m.put(list(),2);
+		}
+		_a.updateView();
+	}
+	public void play2(){
+		int i=0;
+		while(i<=3){
+			int a=0;
+			int j=0;
+			while(j<=3){
+				if(_m.containsKey(new Point(i,j))){
+					if(a!=0){
+						int k=0;
+						while(k<=2){
+							if(!_m.containsKey(new Point(i,k))){
+								_m.put(new Point(i,k), _m.get(new Point(i,j)));
+								_m.remove(new Point(i,j));
+								k=3;
+								_i=1;
+							}
+							k=k+1;
+						}
+					}
+				}
+				else{
+					a=1;
+				}
+				j=j+1;
+			}
+			i=i+1;
+		}
+	}
+	public void add2(){
+		int i=0;
+		while(i<=3){
+			int j=0;
+			while(j<=3){
+				if(_m.containsKey(new Point(i,j))){
+					int k=j+1;
+					while(k<=3){
+						if(_m.containsKey(new Point(i,k))){
+							if(_m.get(new Point(i,j))==_m.get(new Point(i,k))){
+								int a=_m.get(new Point(i,k));
+								int b=_m.get(new Point(i,j));
+								int c=a+b;
+								_m.put(new Point(i,j),c);
+								_m.remove(new Point(i,k));
+								_i=1;
+								_s=_s+c;
+							}
+							k=3;
+						}
+						k=k+1;
+					}
+				}
+				j=j+1;
+			}
+			i=i+1;
+		}
+	}
+	public void start3(){
+		_i=0;
+		add3();
+		play3();
+		if(_i!=0){
+			list();
+			_m.put(list(),2);
+		}
+		_a.updateView();
+	}
+	public void play3(){
+
+		int i=3;
+		while(i>=0){
+			int a=0;
+			int j=3;
+			while(j>=0){
+				if(_m.containsKey(new Point(i,j))){
+					if(a!=0){
+						int k=3;
+						while(k>=0){
+							if(!_m.containsKey(new Point(i,k))){
+								_m.put(new Point(i,k), _m.get(new Point(i,j)));
+								_m.remove(new Point(i,j));
+								k=0;
+								_i=1;
+							}
+							k=k-1;
+						}
+					}
+				}
+				else{
+					a=1;
+				}
+				j=j-1;
+			}
+			i=i-1;
+		}
+	}
+	public void add3(){
+		int i=3;
+		while(i>=0){
+			int j=3;
+			while(j>=0){
+				if(_m.containsKey(new Point(i,j))){
+					int k=j-1;
+					while(k>=0){
+						if(_m.containsKey(new Point(i,k))){
+							if(_m.get(new Point(i,j))==_m.get(new Point(i,k))){
+								int a=_m.get(new Point(i,k));
+								int b=_m.get(new Point(i,j));
+								int c=a+b;
+								_m.put(new Point(i,j),c);
+								_m.remove(new Point(i,k));
+								_i=1;
+								_s=_s+c;
+							}
+							k=0;
+						}
+						k=k-1;
+					}
+				}
+				j=j-1;
+			}
+			i=i-1;
+		}
+	}
+	public Point list(){
+		ArrayList<java.awt.Point> b=new ArrayList<java.awt.Point>();
+		int i=0;
+		while(i<=3){
+			int j=0;
+			while(j<=3){
+				if(!_m.containsKey(new Point(j,i))){
+					b.add(new Point(j,i));
+				}
+				j=j+1;
+			}
+			i=i+1;
+		}
+		Collections.shuffle(b);
+		Point a=b.get(0);
+		return(a);
+	}
+public int get00() {
+	if(_m.containsKey(new Point(0,0))){
+			int i=_m.get(new Point(0,0));
+			return i;
+		}
+		else{
+			return 0;
+		}
+	}
+public int get01() {
+		if(_m.containsKey(new Point(1,0))){
+			int i=_m.get(new Point(1,0));
+			return i;
+		}
+		else{
+			return 0;
+		}
+	}
+public int get02() {
+		if(_m.containsKey(new Point(2,0))){
+			int i=_m.get(new Point(2,0));
+			return i;
+		}
+		else{
+			return 0;
+		}
+	}
+public int get03() {
+		if(_m.containsKey(new Point(3,0))){
+			int i=_m.get(new Point(3,0));
+			return i;
+		}
+		else{
+			return 0;
+		}
+	}
+public int get10() {
+	if(_m.containsKey(new Point(0,1))){
+			int i=_m.get(new Point(0,1));
+			return i;
+		}
+		else{
+			return 0;
+		}
+	}
+public int get11() {
+		if(_m.containsKey(new Point(1,1))){
+			int i=_m.get(new Point(1,1));
+			return i;
+		}
+		else{
+			return 0;
+		}
+	}
+public int get12() {
+		if(_m.containsKey(new Point(2,1))){
+			int i=_m.get(new Point(2,1));
+			return i;
+		}
+		else{
+			return 0;
+		}
+	}
+public int get13() {
+		if(_m.containsKey(new Point(3,1))){
+			int i=_m.get(new Point(3,1));
+			return i;
+		}
+		else{
+			return 0;
+		}
+	}
+public int get20() {
+	if(_m.containsKey(new Point(0,2))){
+			int i=_m.get(new Point(0,2));
+			return i;
+		}
+		else{
+			return 0;
+		}
+	}
+public int get21() {
+		if(_m.containsKey(new Point(1,2))){
+			int i=_m.get(new Point(1,2));
+			return i;
+		}
+		else{
+			return 0;
+		}
+	}
+public int get22() {
+		if(_m.containsKey(new Point(2,2))){
+			int i=_m.get(new Point(2,2));
+			return i;
+		}
+		else{
+			return 0;
+		}
+	}
+public int get23() {
+		if(_m.containsKey(new Point(3,2))){
+			int i=_m.get(new Point(3,2));
+			return i;
+		}
+		else{
+			return 0;
+		}
+	}
+public int get30() {
+	if(_m.containsKey(new Point(0,3))){
+			int i=_m.get(new Point(0,3));
+			return i;
+		}
+		else{
+			return 0;
+		}
+	}
+public int get31() {
+		if(_m.containsKey(new Point(1,3))){
+			int i=_m.get(new Point(1,3));
+			return i;
+		}
+		else{
+			return 0;
+		}
+	}
+public int get32() {
+		if(_m.containsKey(new Point(2,3))){
+			int i=_m.get(new Point(2,3));
+			return i;
+		}
+		else{
+			return 0;
+		}
+	}
+public int get33() {
+		if(_m.containsKey(new Point(3,3))){
+			int i=_m.get(new Point(3,3));
+			return i;
+		}
+		else{
+			return 0;
+		}
+	}
+public String gameover(){
+	String s="Press Enter To Restart     ";
+	int b=0;
+	int a=0;
+	if(_i==0){
+		int i=0;
+		while(i<=3){
+			int j=0;
+			while(j<=3){
+				if(_m.containsKey(new Point(i,j))){
+					a=a+1;
+				}
+				j=j+1;
+			}
+			i=i+1;
+		}	
+	}
+	if(a==16){
+		int i=0;
+		while(i<=3){
+			int j=0;
+			while(j<=3){
+				int z=_m.get(new Point(j,i));
+				int x;
+				if(_m.containsKey(new Point(j+1,i))){
+					x=_m.get(new Point(j+1,i));
+					if(x==z){
+						b=1;
+					}
+				}
+				if(_m.containsKey(new Point(j-1,i))){
+					x=_m.get(new Point(j-1,i));
+					if(x==z){
+						b=1;
+					}
+				}
+				if(_m.containsKey(new Point(j,i+1))){
+					x=_m.get(new Point(j,i+1));
+					if(x==z){
+						b=1;
+					}
+				}
+				if(_m.containsKey(new Point(j,i-1))){
+					x=_m.get(new Point(j,i-1));
+					if(x==z){
+						b=1;
+					}
+				}
+				j=j+1;
+			}
+			i=i+1;
+		}
+		if(b==0){
+			s="No More Moves Press Enter To Play Again     ";
+		}
+	}
+	return s;
+}
+public int score(){
+	return _s;
+}
+public void restart(){
+	_m=new HashMap<Point,Integer>();
+	list();
+	_m.put(list(), 2);
+	_i=0;
+	_s=0;
+	_a.updateView();
+}
+public int highscore(){
+	int b=readfile();
+	if(b<_s){
+			b=_s;
+			makefile();
+		}
+	return b;
+}
+public void makefile(){
+	try {
+		BufferedWriter bw=new BufferedWriter(new FileWriter("//home//csdue//vikramga//workspace//score.txt"));
+		int a=_s;
+		String s=Integer.toString(a);
+		bw.write(s);
+		bw.close();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+}
+public int readfile(){
+	int a=0;
+	try {
+		BufferedReader br=new BufferedReader(new FileReader("//home//csdue//vikramga//workspace//score.txt"));
+		try {
+			a=Integer.parseInt(br.readLine());
+			br.close();
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	} catch (FileNotFoundException e) {
+		e.printStackTrace();
+	}
+	return a;
+}
+}

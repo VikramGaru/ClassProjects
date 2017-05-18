@@ -1,0 +1,27 @@
+package code.interfaces;
+
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class View implements InterfaceForView{
+	private JFrame _a;
+	private JButton _b,_c,_d,_e;
+	public void View(){
+		_a=new JFrame("");
+		JPanel f=new JPanel();
+		_b=new JButton();
+		_c=new JButton();
+		_d=new JButton();
+		_e=new JButton();
+		
+	}
+
+	@Override
+	public void updateView() {
+		// TODO Auto-generated method stub
+	}
+
+}
